@@ -1,0 +1,17 @@
+app:
+  name: 'my-service'
+  port: '1323'
+log:
+  env: 'dev'
+  level: 'debug'
+
+cloud-sql:
+  dbname: 'example_db'
+  gormhost: '(127.0.0.1:3306)'
+  max-idle-conns: 100
+  max-open-conns: 100
+  max-life-time-minutes: 5
+
+secrets:
+  cloud-sql-user: "root"
+  cloud-sql-password: "password"
