@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "my-service.fullname" . }}
+  labels:
+    {{- include "my-service.labels" . | nindent 4 }}
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.nodePort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "my-service.selectorLabels" . | nindent 4 }}

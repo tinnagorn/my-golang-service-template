@@ -1,0 +1,85 @@
+replicaCount: 1
+
+image:
+  repository: asia.gcr.io/my-project-gcp/my-service
+  tag: sit
+  pullPolicy: Always
+
+imagePullSecrets: [ ]
+nameOverride: ""
+fullnameOverride: "my-service"
+
+serviceAccount:
+  create: false
+  annotations: { }
+  name: ""
+
+podAnnotations: { }
+
+podSecurityContext: { }
+
+securityContext: { }
+
+service:
+  # type: ClusterIP
+  # type: NodePort
+  type: LoadBalancer
+  port: 80
+  nodePort: 32489
+
+
+ingress:
+  enabled: false
+  annotations: { }
+  hosts:
+    - host: chart-example.local
+      paths: [ ]
+  tls: [ ]
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 32Mi
+  requests:
+    cpu: 250m
+    memory: 8Mi
+
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+affinity: { }
+
+configmap:
+  app:
+    name: 'my-service'
+    port: '1323'
+  log:
+    env: 'dev'
+    level: 'debug'
+
+  cloud-sql:
+    dbname: 'example_db'
+    gormhost: '(127.0.0.1:3306)'
+    max-idle-conns: 100
+    max-open-conns: 100
+    max-life-time-minutes: 5
+
+  redis:
+    host: "127.0.0.1"
+    port: 6379
+    db: 1
+
+secrets:
+  all:
+    cloud-sql-user: "admin"
+    cloud-sql-password: "password"
+    redis-password: ""
