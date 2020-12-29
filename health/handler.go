@@ -23,7 +23,6 @@ func (h *Handler) HealthCheck(c echo.Context) error {
 	)
 
 	if err := c.Bind(req); err != nil {
-		// logx.WithID(requestID).Error(err.Error())
 		log.Printf("Error : Request ID : " + requestID + " , " + err.Error())
 		return c.Blob(http.StatusBadRequest, echo.MIMEApplicationJSON, []byte("can't not bind request"))
 	}
