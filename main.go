@@ -50,7 +50,7 @@ func main() {
 
 	utility.GetSecretValue()
 	database.Initialize()
-	err := newRedisClient() // if you use docker use this cmd for create redis in localhost #docker run --rm -p 6379:6379 --name my_redis redis:4-alpine
+	err := newRedisClient()
 	if err != nil {
 		log.Fatalf("Can't initial to Redis : %s\n", err.Error())
 	}
