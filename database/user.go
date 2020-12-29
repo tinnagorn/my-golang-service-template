@@ -7,10 +7,10 @@ import (
 )
 
 type User struct {
-	userID    string    `json:"userId" gorm:"column:user_id"`
-	mobileNo  string    `json:"mobileNo" gorm:"column:mobile_no"`
-	firstName string    `json:"titleTH" gorm:"column:first_name"`
-	lastName  string    `json:"lastName" gorm:"column:last_name"`
+	UserID    string    `json:"userId" gorm:"column:user_id"`
+	MobileNo  string    `json:"mobileNo" gorm:"column:mobile_no"`
+	FirstName string    `json:"titleTH" gorm:"column:first_name"`
+	LastName  string    `json:"lastName" gorm:"column:last_name"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	DeletedAt time.Time `json:"deletedAt"`
@@ -28,7 +28,7 @@ func GetListByUserID(userID string) (user []User, err error) {
 
 func CreateUser(user *User) (User, error) {
 	db := GetDB()
-	user.userID = uuid.New().String()
+	user.UserID = uuid.New().String()
 	if err := db.Create(&user).Error; err != nil {
 		return *user, err
 	}
