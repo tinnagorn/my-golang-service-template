@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql2
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: example_db
+    ports:
+      - 127.0.0.1:3306:3306
+
+  redis:
+      image: "redis:alpine"
+      command: redis-server
+      ports:
+      - "6379:6379"

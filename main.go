@@ -13,6 +13,7 @@ import (
 	"github.com/spf13/viper"
 	log "github.com/tOnkowzl/libs/logx"
 	"github.com/tOnkowzl/libs/middleware"
+	"github.com/tinnagorn/my-golang-service-template/cachemanager"
 	"github.com/tinnagorn/my-golang-service-template/database"
 	"github.com/tinnagorn/my-golang-service-template/health"
 	"github.com/tinnagorn/my-golang-service-template/inquirydata"
@@ -23,6 +24,7 @@ var (
 	buildstamp = time.Now().String()
 	githash    = "developing"
 )
+var redisClient *cachemanager.Cache
 
 func init() {
 	viper.AddConfigPath(".")
@@ -47,7 +49,11 @@ func init() {
 func main() {
 
 	utility.GetSecretValue()
-	// database.Initialize()
+	database.Initialize()
+	err := newRedisClient() // if you use docker use this cmd for create redis in localhost #docker run --rm -p 6379:6379 --name my_redis redis:4-alpine
+	if err != nil {
+		log.Fatalf("Can't initial to Redis : %s\n", err.Error())
+	}
 
 	var router = newEcho()
 
@@ -96,8 +102,22 @@ func shutdown(router *echo.Echo) {
 	<-quit
 
 	defer database.Close()
-	// defer cachemanager.GetCacheManager().Close()
+	defer redisClient.Close()
 	if err := router.Shutdown(context.Background()); err != nil {
 		log.Fatal("shutdown server: ", err)
 	}
+}
+
+func newRedisClient() error {
+	redisHost := viper.GetString("redis.host")
+	redisPort := viper.GetString("redis.port")
+	redisPw := viper.GetString("secrets.redis.password")
+	redisDb := viper.GetInt("redis.db")
+	client, err := cachemanager.NewCache(redisHost, redisPort, redisPw, redisDb)
+	if err != nil {
+		log.Fatalf("Error on init Redis %s", err.Error())
+		return err
+	}
+	redisClient = client
+	return nil
 }

@@ -12,6 +12,12 @@ cloud-sql:
   max-open-conns: 100
   max-life-time-minutes: 5
 
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  db: 1
+
 secrets:
-  cloud-sql-user: "root"
+  cloud-sql-user: "admin"
   cloud-sql-password: "password"
+  redis-password: ""
