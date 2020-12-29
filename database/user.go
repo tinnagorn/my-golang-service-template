@@ -7,9 +7,9 @@ import (
 )
 
 type User struct {
-	UserID    string    `json:"userId" gorm:"column:user_id"`
+	UserID    string    `json:"userID" gorm:"column:user_id"`
 	MobileNo  string    `json:"mobileNo" gorm:"column:mobile_no"`
-	FirstName string    `json:"titleTH" gorm:"column:first_name"`
+	FirstName string    `json:"firstName" gorm:"column:first_name"`
 	LastName  string    `json:"lastName" gorm:"column:last_name"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
