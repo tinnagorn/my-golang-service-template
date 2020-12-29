@@ -9,6 +9,9 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: example_db
+    command: --init-file /data/application/init.sql     
+    volumes:
+        - ./database/init.sql:/data/application/init.sql      
     ports:
       - 127.0.0.1:3306:3306
 
