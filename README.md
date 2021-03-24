@@ -22,6 +22,11 @@ step 3: run my service :)
 $ go run main.go
 ```
 
+run docker-compose up for create mysql / redis
+```
+docker-compose up
+```
+
 step 4: test my service use curl or import postman_collection 
 
 ```

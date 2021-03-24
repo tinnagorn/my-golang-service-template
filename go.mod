@@ -12,6 +12,7 @@ require (
 	github.com/google/uuid v1.1.1
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/jinzhu/gorm v1.9.16
+	github.com/kr/fs v0.1.0 // indirect
 	github.com/labstack/echo/v4 v4.1.17
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
@@ -19,7 +20,8 @@ require (
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.6.1
-	github.com/tOnkowzl/libs v0.0.34
+	github.com/tOnkowzl/libs v0.0.30
+	github.com/tools/godep v0.0.0-20180126220526-ce0bfadeb516 // indirect
 	github.com/valyala/fasthttp v1.19.0 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
 	github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0 // indirect
